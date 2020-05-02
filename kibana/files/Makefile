@@ -23,17 +23,29 @@ clean:  ## Clean python bytecodes, optimized files, logs, cache, coverage...
 raise:  ## temporary configuration to allow running the elasticsearch containers
 	@sudo sysctl -w vm.max_map_count=262144
 
+docker-compose-dft-up: clean raise  ## Up docker-compose for development
+	@cd $(ROOT_FOLDER)/$(DFT_FOLDER) && docker-compose up -d
+
+docker-compose-dft-stop: clean  ## Stop docker-compose for development
+	@cd $(ROOT_FOLDER)/$(DFT_FOLDER) && docker-compose stop
+
+docker-compose-dft-rm: docker-compose-dft-stop  ## Delete the development environment containers
+	@cd $(ROOT_FOLDER)/$(DFT_FOLDER) && docker-compose rm -f
+
 docker-compose-current-up: clean raise  ## Up docker-compose for development
 	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose up -d
 
 docker-compose-current-stop: clean  ## Stop docker-compose for development
 	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose stop
 
-docker-compose-current-rm: docker-compose-stop  ## Delete the development environment containers
+docker-compose-current-rm: docker-compose-current-stop  ## Delete the development environment containers
 	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose rm -f
 
-check:  ## Get if the cluster is running successfully
+nodes-info:  ## Get if the cluster is running successfully
 	@curl -X GET "localhost:9200/_cat/nodes?v&pretty"
+
+healthcheck:  ## Get if the cluster is running successfully
+	@curl -X GET "localhost:9200/_cat/health?v&pretty"
 
 kibana:  ## Opens kibana dashboard
 	@xdg-open http://localhost:5601/
