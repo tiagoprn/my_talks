@@ -1,7 +1,9 @@
 .PHONY: help
 SHELL:=/bin/bash
 SHARED_FOLDER=/tmp/shared-docker-$(shell date +%Y%m%d_%H%M%S)
-
+ROOT_FOLDER=$(shell pwd)
+CURRENT_FOLDER=current
+DFT_FOLDER=dft
 
 help:  ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
@@ -21,17 +23,14 @@ clean:  ## Clean python bytecodes, optimized files, logs, cache, coverage...
 raise:  ## temporary configuration to allow running the elasticsearch containers
 	@sudo sysctl -w vm.max_map_count=262144
 
-docker-compose-up: clean raise  ## Up docker-compose for development
-	@docker-compose up -d
+docker-compose-current-up: clean raise  ## Up docker-compose for development
+	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose up -d
 
-docker-compose-stop: clean  ## Stop docker-compose for development
-	@docker-compose stop
+docker-compose-current-stop: clean  ## Stop docker-compose for development
+	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose stop
 
-docker-compose-rm: docker-compose-stop  ## Delete the development environment containers
-	@docker-compose rm -f
-
-docker-compose-logs: clean  ## See all containers logs in real-time
-	@docker-compose logs
+docker-compose-current-rm: docker-compose-stop  ## Delete the development environment containers
+	@cd $(ROOT_FOLDER)/$(CURRENT_FOLDER) && docker-compose rm -f
 
 check:  ## Get if the cluster is running successfully
 	@curl -X GET "localhost:9200/_cat/nodes?v&pretty"
