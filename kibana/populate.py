@@ -67,8 +67,8 @@ def main():
     records = get_generations_data()
 
     for dict_data in records:
-        res = es.index(index="my_elasticsearch_database",
-                    doc_type='my_elasticsearch_database_doctype',
+        res = es.index(index='pokemon_index',
+                    doc_type='pokemon_index_doctype',
                     id=uuid4(),
                     body=dict_data)
         logger.info(res['result'])
