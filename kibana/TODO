@@ -1,0 +1,2 @@
+- Update populate.py to put on a different index information related to each
+  individual pokemon, so that we can make more detailed queries.
