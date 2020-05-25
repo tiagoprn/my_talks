@@ -1,5 +1,6 @@
 import json
 import logging
+import math
 import sys
 
 from pathlib import Path
@@ -42,7 +43,7 @@ def populate(csv_file: Path):
 
     dataframe= pd.DataFrame()
 
-    CHUNKSIZE = 10000
+    CHUNKSIZE = 10 # 10000
 
     chunk_number = 0
 
@@ -55,37 +56,25 @@ def populate(csv_file: Path):
         encoding = 'latin-1'
 
     csv_size = csv_file.stat().st_size
-    logger.info(
-        f'Reading CSV into a pandas dataframe '
-        f'(lines={num_lines}, file_size={csv_size})...'
-    )
 
-    for chunk in pd.read_csv(
-        csv_file, encoding=encoding, error_bad_lines=False, chunksize=CHUNKSIZE
-    ):
-        dataframe = pd.concat([dataframe, chunk], ignore_index=True)
-        chunk_number += 1
+    chunks = math.ceil((num_lines-1)/CHUNKSIZE)
+
+    with open(json_file, 'w') as file:
         logger.info(
-            f'Finished processing chunk {chunk_number} '
-            f'({chunk_number*CHUNKSIZE}/{num_lines})...'
+                f'Reading CSV into a pandas dataframe '
+                f'(lines={num_lines}, file_size={csv_size})...'
+                )
+        dfs = pd.read_csv(
+            csv_file,
+            encoding=encoding,
+            error_bad_lines=False,
+            chunksize=CHUNKSIZE
         )
-
-    logger.info(
-        f'Converting dataframe to json file '
-        f'(total_lines={len(dataframe)})...'
-    )
-
-    logger.info('Writing dataframe to json file...')
-
-
-    # https://stackoverflow.com/questions/38531195/writing-large-pandas-dataframes-to-csv-file-in-chunks
-    arguments = {
-        'orient': 'records',
-        'lines':  True,
-        'chunksize': CHUNKSIZE  # ,
-        # 'mode': 'a'   # if chunksize does not work, this is the other alternative.
-    }
-    dataframe.to_json(json_file, **arguments)
+        for chunk_number, df in enumerate(dfs):
+            chunk_number += 1
+            logger.info(f'Processing chunk {chunk_number}/{chunks}...')
+            df.to_json(file, orient='records', lines=True)
+            file.write('\n')
 
     logger.info('Initializing Elasticsearch...')
 
