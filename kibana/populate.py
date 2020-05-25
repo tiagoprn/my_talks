@@ -36,7 +36,14 @@ def populate(csv_file: Path):
 
     json_file = csv_file.as_posix().replace('.csv', '.json')
 
-    dataframe = pd.read_csv(csv_file)
+
+    try:
+        dataframe = pd.read_csv(csv_file, error_bad_lines=False)
+    except UnicodeDecodeError:
+        dataframe = pd.read_csv(
+            csv_file, encoding='latin-1', error_bad_lines=False
+        )
+
     dataframe.to_json(json_file, orient='records', lines=True)
 
     logger.info('Initializing Elasticsearch...')
