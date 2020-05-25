@@ -43,7 +43,7 @@ def populate(csv_file: Path):
 
     dataframe= pd.DataFrame()
 
-    CHUNKSIZE = 10 # 10000
+    CHUNKSIZE = 10000
 
     chunk_number = 0
 
@@ -89,14 +89,6 @@ def populate(csv_file: Path):
     )
     helpers.bulk(es, key)
 
-    '''
-    for data in records:
-        dict_data = json.loads(data.replace('\n', ''))
-        res = es.index(index=f'{dataset_name}_index',
-                    doc_type=f'{dataset_name}_index_doctype',
-                    body=dict_data)
-        logger.info(res['result'])
-    '''
 
 if __name__ == '__main__':
     typer.run(populate)
