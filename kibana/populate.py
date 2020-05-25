@@ -36,13 +36,29 @@ def populate(csv_file: Path):
 
     json_file = csv_file.as_posix().replace('.csv', '.json')
 
+    dataframe= pd.DataFrame()
 
+    CHUNKSIZE = 100000
+
+    chunk_number = 0
     try:
-        dataframe = pd.read_csv(csv_file, error_bad_lines=False)
+        for chunk in pd.read_csv(csv_file, error_bad_lines=False, chunksize=CHUNKSIZE):
+            dataframe = pd.concat([dataframe, chunk], ignore_index=True)
+            chunk_number += 1
+            logger.info(f'Finished processing chunk {chunk_number}')
+            if chunk_number == 1:
+                break  # TODO: remove, just testing here....
     except UnicodeDecodeError:
-        dataframe = pd.read_csv(
-            csv_file, encoding='latin-1', error_bad_lines=False
-        )
+        for chunk in pd.read_csv(
+            csv_file, encoding='latin-1', error_bad_lines=False, chunksize=CHUNKSIZE
+        ):
+            dataframe = pd.concat([dataframe, chunk], ignore_index=True)
+            chunk_number += 1
+            logger.info(f'Finished processing chunk {chunk_number}')
+            if chunk_number == 1:
+                break  # TODO: remove, just testing here....
+
+    logger.info('Converting dataframe to json file...')
 
     dataframe.to_json(json_file, orient='records', lines=True)
 
