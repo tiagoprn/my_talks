@@ -39,7 +39,7 @@ def populate(csv_file: Path):
 
     dataset_name = csv_file.name.split('.')[0]
 
-    json_file = csv_file.as_posix().replace('.csv', '.json')
+    json_file = f"{str(Path.home())}/tmp/{dataset_name}.json"
 
     dataframe= pd.DataFrame()
 
