@@ -67,7 +67,7 @@ def populate(csv_file: Path):
         chunk_number += 1
         logger.info(
             f'Finished processing chunk {chunk_number} '
-            f'({chunk}/{num_lines})...'
+            f'({chunk_number*CHUNKSIZE}/{num_lines})...'
         )
 
     logger.info(
