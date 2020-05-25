@@ -75,9 +75,17 @@ def populate(csv_file: Path):
         f'(total_lines={len(dataframe)})...'
     )
 
-    __import__('ipdb').set_trace()
+    logger.info('Writing dataframe to json file...')
 
-    dataframe.to_json(json_file, orient='records', lines=True)
+
+    # https://stackoverflow.com/questions/38531195/writing-large-pandas-dataframes-to-csv-file-in-chunks
+    arguments = {
+        'orient': 'records',
+        'lines':  True,
+        'chunksize': CHUNKSIZE  # ,
+        # 'mode': 'a'   # if chunksize does not work, this is the other alternative.
+    }
+    dataframe.to_json(json_file, **arguments)
 
     logger.info('Initializing Elasticsearch...')
 
