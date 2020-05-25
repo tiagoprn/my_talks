@@ -1,18 +1,16 @@
-- Improve on example 1: Update populate.py to put on a different index information related to each
-  individual pokemon, so that we can make more detailed queries.
-
-- Example 2: Create a general and reusable api to load a CSV with 1GB or more inside
+- Example: Create a general and reusable cli to load the CSVs on
   elasticsearch, using pandas to convert to a json file. If possible, use
 panda's batches to control memory consumption.
-
-- Example 3: Make a dump of a postgres table to CSV and load into the api
-  developed on example 2.
-
-- Example 4: Read data from an elasticsearch index (doing some specific query,
-  e.g. the last day of data), and backup it into a CSV using pandas. Pass this
-csv backup through the api from example 2 , populating another index to prove
-the backup successfully occured.
 
 - Demonstrate how to create queries and dashboard/graphics on elasticsearch
   (show the "Discover" panel also, with the "pre-analysis" done by it).
 
+
+Colocar essas ideias de potenciais usos do elasticsearch:
+
+- Make a dump of a postgres table to CSV and load into the cli
+  developed on example 2.
+
+- Backup  elasticsearch index (doing some specific query,
+  e.g. the last day of data), to a CSV using pandas. It could be easily
+restored that way.
