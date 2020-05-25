@@ -41,40 +41,43 @@ def populate(csv_file: Path):
 
     json_file = f"{str(Path.home())}/tmp/{dataset_name}.json"
 
-    dataframe= pd.DataFrame()
+    json_file_exists = Path(json_file).exists()
 
-    CHUNKSIZE = 10000
+    if not json_file_exists:
+        dataframe= pd.DataFrame()
 
-    chunk_number = 0
+        CHUNKSIZE = 10000
 
-    logger.info('Computing CSV file number of lines...')
-    try:
-        num_lines = sum(1 for line in open(csv_file.as_posix()))
-        encoding = 'utf-8'
-    except UnicodeDecodeError:
-        num_lines = sum(1 for line in open(csv_file.as_posix(), encoding='latin-1'))
-        encoding = 'latin-1'
+        chunk_number = 0
 
-    csv_size = csv_file.stat().st_size
+        logger.info('Computing CSV file number of lines...')
+        try:
+            num_lines = sum(1 for line in open(csv_file.as_posix()))
+            encoding = 'utf-8'
+        except UnicodeDecodeError:
+            num_lines = sum(1 for line in open(csv_file.as_posix(), encoding='latin-1'))
+            encoding = 'latin-1'
 
-    chunks = math.ceil((num_lines-1)/CHUNKSIZE)
+        csv_size = csv_file.stat().st_size
 
-    with open(json_file, 'w') as file:
-        logger.info(
-                f'Reading CSV into a pandas dataframe '
-                f'(lines={num_lines}, file_size={csv_size})...'
-                )
-        dfs = pd.read_csv(
-            csv_file,
-            encoding=encoding,
-            error_bad_lines=False,
-            chunksize=CHUNKSIZE
-        )
-        for chunk_number, df in enumerate(dfs):
-            chunk_number += 1
-            logger.info(f'Processing chunk {chunk_number}/{chunks}...')
-            df.to_json(file, orient='records', lines=True)
-            file.write('\n')
+        chunks = math.ceil((num_lines-1)/CHUNKSIZE)
+
+        with open(json_file, 'w') as file:
+            logger.info(
+                    f'Reading CSV into a pandas dataframe '
+                    f'(lines={num_lines}, file_size={csv_size})...'
+                    )
+            dfs = pd.read_csv(
+                csv_file,
+                encoding=encoding,
+                error_bad_lines=False,
+                chunksize=CHUNKSIZE
+            )
+            for chunk_number, df in enumerate(dfs):
+                chunk_number += 1
+                logger.info(f'Processing chunk {chunk_number}/{chunks}...')
+                df.to_json(file, orient='records', lines=True)
+                file.write('\n')
 
     logger.info('Initializing Elasticsearch...')
 
