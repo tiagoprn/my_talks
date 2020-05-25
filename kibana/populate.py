@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 def open_input_json_file(json_file: str):
     with open(json_file, 'r') as input_file:
-        for record in input_file.readlines():
+        for record in input_file:
             yield record.replace('\n', '')
 
 def populate(csv_file: Path):
