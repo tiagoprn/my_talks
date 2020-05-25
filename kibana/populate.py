@@ -7,7 +7,7 @@ from uuid import uuid4
 
 from datetime import datetime
 
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, helpers
 import pandas as pd
 import requests
 import typer
@@ -24,6 +24,10 @@ logging.basicConfig(
     ])
 logger = logging.getLogger(__name__)
 
+def open_input_json_file(json_file: str):
+    with open(json_file, 'r') as input_file:
+        for record in input_file.readlines():
+            yield record.replace('\n', '')
 
 def populate(csv_file: Path):
     logger.info(f'Running for file={csv_file}...')
@@ -41,13 +45,12 @@ def populate(csv_file: Path):
     CHUNKSIZE = 100000
 
     chunk_number = 0
+
     try:
         for chunk in pd.read_csv(csv_file, error_bad_lines=False, chunksize=CHUNKSIZE):
             dataframe = pd.concat([dataframe, chunk], ignore_index=True)
             chunk_number += 1
             logger.info(f'Finished processing chunk {chunk_number}')
-            if chunk_number == 1:
-                break  # TODO: remove, just testing here....
     except UnicodeDecodeError:
         for chunk in pd.read_csv(
             csv_file, encoding='latin-1', error_bad_lines=False, chunksize=CHUNKSIZE
@@ -55,8 +58,6 @@ def populate(csv_file: Path):
             dataframe = pd.concat([dataframe, chunk], ignore_index=True)
             chunk_number += 1
             logger.info(f'Finished processing chunk {chunk_number}')
-            if chunk_number == 1:
-                break  # TODO: remove, just testing here....
 
     logger.info('Converting dataframe to json file...')
 
@@ -66,15 +67,23 @@ def populate(csv_file: Path):
 
     es = Elasticsearch()
 
-    with open(json_file, 'r') as input_file:
-        records = input_file.readlines()
+    key = (
+        {
+            "_index": f'{dataset_name}_index',
+            "_type" : f'{dataset_name}_index_doctype',
+            "_source": record,
+        } for record in open_input_json_file(json_file)
+    )
+    helpers.bulk(es, key)
 
+    '''
     for data in records:
         dict_data = json.loads(data.replace('\n', ''))
         res = es.index(index=f'{dataset_name}_index',
                     doc_type=f'{dataset_name}_index_doctype',
                     body=dict_data)
         logger.info(res['result'])
+    '''
 
 if __name__ == '__main__':
     typer.run(populate)
