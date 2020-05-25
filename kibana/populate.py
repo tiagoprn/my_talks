@@ -42,24 +42,40 @@ def populate(csv_file: Path):
 
     dataframe= pd.DataFrame()
 
-    CHUNKSIZE = 100000
+    CHUNKSIZE = 10000
 
     chunk_number = 0
 
+    logger.info('Computing CSV file number of lines...')
     try:
-        for chunk in pd.read_csv(csv_file, error_bad_lines=False, chunksize=CHUNKSIZE):
-            dataframe = pd.concat([dataframe, chunk], ignore_index=True)
-            chunk_number += 1
-            logger.info(f'Finished processing chunk {chunk_number}')
+        num_lines = sum(1 for line in open(csv_file.as_posix()))
+        encoding = 'utf-8'
     except UnicodeDecodeError:
-        for chunk in pd.read_csv(
-            csv_file, encoding='latin-1', error_bad_lines=False, chunksize=CHUNKSIZE
-        ):
-            dataframe = pd.concat([dataframe, chunk], ignore_index=True)
-            chunk_number += 1
-            logger.info(f'Finished processing chunk {chunk_number}')
+        num_lines = sum(1 for line in open(csv_file.as_posix(), encoding='latin-1'))
+        encoding = 'latin-1'
 
-    logger.info('Converting dataframe to json file...')
+    csv_size = csv_file.stat().st_size
+    logger.info(
+        f'Reading CSV into a pandas dataframe '
+        f'(lines={num_lines}, file_size={csv_size})...'
+    )
+
+    for chunk in pd.read_csv(
+        csv_file, encoding=encoding, error_bad_lines=False, chunksize=CHUNKSIZE
+    ):
+        dataframe = pd.concat([dataframe, chunk], ignore_index=True)
+        chunk_number += 1
+        logger.info(
+            f'Finished processing chunk {chunk_number} '
+            f'({chunk}/{num_lines})...'
+        )
+
+    logger.info(
+        f'Converting dataframe to json file '
+        f'(total_lines={len(dataframe)})...'
+    )
+
+    __import__('ipdb').set_trace()
 
     dataframe.to_json(json_file, orient='records', lines=True)
 
