@@ -37,15 +37,17 @@ def populate(csv_file: Path):
     json_file = csv_file.as_posix().replace('.csv', '.json')
 
     dataframe = pd.read_csv(csv_file)
-    dataframe.to_json(json_file, orient='records')
+    dataframe.to_json(json_file, orient='records', lines=True)
 
     logger.info('Initializing Elasticsearch...')
 
     es = Elasticsearch()
 
-    records = []
+    with open(json_file, 'r') as input_file:
+        records = input_file.readlines()
 
-    for dict_data in records:
+    for data in records:
+        dict_data = json.loads(data.replace('\n', ''))
         res = es.index(index=f'{dataset_name}_index',
                     doc_type=f'{dataset_name}_index_doctype',
                     body=dict_data)
