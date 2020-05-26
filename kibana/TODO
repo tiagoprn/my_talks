@@ -1,12 +1,10 @@
-- Example: Create a general and reusable cli to load the CSVs on
-  elasticsearch, using pandas to convert to a json file. If possible, use
-panda's batches to control memory consumption.
+- Finish the cli to populate from elasticsearch (it is supporting the bigger
+  file `/storage/datasets/kibana-presentation/enem-2016.csv`).
 
 - Demonstrate how to create queries and dashboard/graphics on elasticsearch
   (show the "Discover" panel also, with the "pre-analysis" done by it).
 
-
-Colocar essas ideias de potenciais usos do elasticsearch:
+## Add the ideas below on potential uses of elasticsearch:
 
 - Make a dump of a postgres table to CSV and load into the cli
   developed on example 2.
