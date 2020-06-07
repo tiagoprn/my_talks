@@ -11,8 +11,9 @@
 - Elasticsearch - What is sharding and its' benefits?
 - Elasticsearch as your primary data store?
 - Recommended way to use elasticsearch
-- Kibana - The elasticsearch Web UI
+- How to query your data on elasticsearch
 - Using python to populate data into elasticsearch
+- Kibana - The elasticsearch Web UI
 - Exploring data on Kibana - The "Discover"
 - Exploring data on Kibana - The "Saved Searches"
 - Exploring data on Kibana - "Dashboards"
@@ -22,7 +23,6 @@
 -------------------------------------------------
 
 # Introduction to the ELK stack
-
 
 - [E]lasticsearch: data persistance, the "database"
 - [L]ogstash: aggregates and transforms data before persisting
@@ -150,13 +150,106 @@ weaknesses of your stores!"
 
 -------------------------------------------------
 
-# Kibana - The elasticsearch Web UI
+# Considerations on how to query your data on elasticsearch (1/5)
+
+- When you index (save) a document into ElasticSearch, that document is saved
+  multiple times — on a shard and its replica(s). However, the information you
+save is only made available at the next index refresh.
+
+-------------------------------------------------
+
+# Considerations on how to query your data on elasticsearch (2/5)
+
+- **An index refresh is an operation that makes the latest changes applied to an
+index available for search** (meaning they’ll reflect in results for search
+queries). ElasticSearch **refreshes every index automatically by the value of its
+refresh interval, which is set to 1 second by default**.
+
+-------------------------------------------------
+
+# Considerations on how to query your data on elasticsearch (3/5)
+
+- **ElasticSearch does not "just" store the data you index, but it also tries to
+  detect and determine the data type of each field you send it using dynamic
+mapping.** It then uses tokenizers to break the indexed data into individual
+terms (e.g: a textual sentence can be broken down into individual words, using
+a whitespace as a separator to detect individual search terms within it). Then
+it stores that information next to the original payload. That is one of the
+reasons on why it makes statistical analysis so fast on big datasets, and
+that is also important to understand why some queries we send to it do not work.
+
+-------------------------------------------------
+
+# Considerations on how to query your data on elasticsearch (4/5)
+
+- Suppose we insert the following text to be stored on es:
+
+`Email me at john.smith@global-international.com`
+
+This will be stored on elasticsearch as:
+
+`[ Email, me, at, john.smith, global, international.com ]`
+
+**Noticed the e-mail is not stored as an e-mail?** So, if you try an exact search
+for `john.smith@global-international.com`, it will never return. But you can
+overcome that using es "mapping" feature.
+
+-------------------------------------------------
+
+# Considerations on how to query your data on elasticsearch (5/5)
+
+- With the mapping feature, we can let es know how we’d like it to store the
+  information and in turn, how we plan to search for it. On the example above,
+we would have to tell es that we want it to NOT analyse an e-mail field when it
+finds one, so that we can do an exact search on its value. Out of curiosity,
+here is an example:
+
+```
+elasticSearchClient.indices.create({
+ "index":"users", //index name
+ "body":{
+  "mappings":{
+   "someType" : { //document type
+    "properties" : {
+     "email" : { //Prevent email field from being analyzed
+      "type" : "string",
+      "index" : "not_analyzed"
+      }
+     }
+    }
+   }
+  }
+});
+```
+
+Then, we could query like below:
+```
+elasticSearchClient.search({
+ index: "users",
+ type: "sometype",
+ body: {
+  query:{
+    "bool": {
+      "must": [
+        {
+          term:{
+           "email": "john.smith@global-international.com"
+          }
+        }
+      ]
+    }
+  }
+ })
+```
+-------------------------------------------------
+
+# Using python to populate data into elasticsearch
 
 TODO
 
 -------------------------------------------------
 
-# Using python to populate data into elasticsearch
+# Kibana - The elasticsearch Web UI
 
 TODO
 
