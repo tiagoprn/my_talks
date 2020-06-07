@@ -160,18 +160,18 @@ save is only made available at the next index refresh.
 
 # Considerations on how to query your data on elasticsearch (2/3)
 
-- **An index refresh is an operation that makes the latest changes applied to an
-index available for search** (meaning they’ll reflect in results for search
-queries). ElasticSearch **refreshes every index automatically by the value of its
-refresh interval, which is set to 1 second by default**.
+- **An index refresh is an operation that makes the latest changes applied to an**
+**index available for search** (meaning they’ll reflect in results for search
+queries). ElasticSearch **refreshes every index automatically by the value of its**
+**refresh interval, which is set to 1 second by default**.
 
 -------------------------------------------------
 
 # Considerations on how to query your data on elasticsearch (3/3)
 
-- **ElasticSearch does not "just" store the data you index, but it also tries to
-  detect and determine the data type of each field you send it using dynamic
-mapping.** It then uses tokenizers to break the indexed data into individual
+- **ElasticSearch does not "just" store the data you index, but it also tries to**
+  **detect and determine the data type of each field you send it using dynamic**
+**mapping.** It then uses tokenizers to break the indexed data into individual
 terms (e.g: a textual sentence can be broken down into individual words, using
 a whitespace as a separator to detect individual search terms within it). Then
 it stores that information next to the original payload. That is one of the
