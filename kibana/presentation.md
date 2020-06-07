@@ -14,6 +14,7 @@
 - Using python to populate data into elasticsearch
 - Exploring data on Kibana - The "Discover"
 - Exploring data on Kibana - The "Saved Searches"
+- Exploring data on Kibana - "Dashboards"
 - Questions
 - References / Recommended readings
 
@@ -148,6 +149,12 @@ TODO
 -------------------------------------------------
 
 # Exploring data on Kibana - The "Saved Searches"
+
+TODO
+
+-------------------------------------------------
+
+# Exploring data on Kibana - "Dashboards"
 
 TODO
 
