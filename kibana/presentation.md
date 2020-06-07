@@ -251,8 +251,20 @@ elasticSearchClient.search({
 
 # Using python to populate data into elasticsearch
 
+## Simple insert
+
 [inserting records one by one on es](simple.py)
+
+`python simple.py`
+
+## Bulk insert
+
 [bulk/mass inserting records on es](bulk.py)
+
+```
+rm /storage/datasets/kibana-presentation/*.json; \
+python bulk.py /storage/datasets/kibana-presentation/videogame-sales.csv
+```
 
 -------------------------------------------------
 
@@ -288,4 +300,7 @@ TODO
 # References / Recommended readings:
 
 - [Recommended Readings](recommended_readings.md)
+
+Data from the video games sales dataset was downloaded as CSV from
+[here](https://www.kaggle.com/gregorut/videogamesales)
 
