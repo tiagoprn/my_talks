@@ -92,6 +92,8 @@ def populate(csv_file: Path):
     )
     helpers.bulk(es, key)
 
+    logger.info('Finished.')
+
 
 if __name__ == '__main__':
     typer.run(populate)

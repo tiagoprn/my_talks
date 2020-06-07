@@ -22,7 +22,13 @@
 
 # Introduction to the ELK stack
 
-TODO
+
+- [E]lasticsearch: data persistance, the "database"
+- [L]ogstash: aggregates and transforms data before persisting
+- [K]ibana: WebUI to Elasticsearch
+
+The main value here is given by Elasticsearch. Both other components are
+entirely optional.
 
 -------------------------------------------------
 # Elasticsearch - purpose (1/2)
