@@ -251,20 +251,15 @@ elasticSearchClient.search({
 
 # Using python to populate data into elasticsearch
 
-## Simple insert
-
-[inserting records one by one on es](simple.py)
+- Simple insert
+(inserting records one by one on es)
 
 `python simple.py`
 
-## Bulk insert
+- Bulk insert
+(bulk/mass inserting records on es)
 
-[bulk/mass inserting records on es](bulk.py)
-
-```
-rm /storage/datasets/kibana-presentation/*.json; \
-python bulk.py /storage/datasets/kibana-presentation/videogame-sales.csv
-```
+`python bulk.py /storage/datasets/kibana-presentation/videogame-sales.csv`
 
 -------------------------------------------------
 
