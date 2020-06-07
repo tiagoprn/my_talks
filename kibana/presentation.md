@@ -11,7 +11,8 @@
 - Elasticsearch - What is sharding and its' benefits?
 - Elasticsearch as your primary data store?
 - Recommended way to use elasticsearch
-- How to query your data on elasticsearch
+- Considerations on how to query your data on elasticsearch
+- Considerations on how to query your data on elasticsearch - example
 - Using python to populate data into elasticsearch
 - Kibana - The elasticsearch Web UI
 - Exploring data on Kibana - The "Discover"
@@ -150,7 +151,7 @@ weaknesses of your stores!"
 
 -------------------------------------------------
 
-# Considerations on how to query your data on elasticsearch (1/5)
+# Considerations on how to query your data on elasticsearch (1/3)
 
 - When you index (save) a document into ElasticSearch, that document is saved
   multiple times — on a shard and its replica(s). However, the information you
@@ -158,7 +159,7 @@ save is only made available at the next index refresh.
 
 -------------------------------------------------
 
-# Considerations on how to query your data on elasticsearch (2/5)
+# Considerations on how to query your data on elasticsearch (2/3)
 
 - **An index refresh is an operation that makes the latest changes applied to an
 index available for search** (meaning they’ll reflect in results for search
@@ -167,7 +168,7 @@ refresh interval, which is set to 1 second by default**.
 
 -------------------------------------------------
 
-# Considerations on how to query your data on elasticsearch (3/5)
+# Considerations on how to query your data on elasticsearch (3/3)
 
 - **ElasticSearch does not "just" store the data you index, but it also tries to
   detect and determine the data type of each field you send it using dynamic
@@ -180,7 +181,7 @@ that is also important to understand why some queries we send to it do not work.
 
 -------------------------------------------------
 
-# Considerations on how to query your data on elasticsearch (4/5)
+# Considerations on how to query your data on elasticsearch - example (1/3)
 
 - Suppose we insert the following text to be stored on es:
 
@@ -196,13 +197,12 @@ overcome that using es "mapping" feature.
 
 -------------------------------------------------
 
-# Considerations on how to query your data on elasticsearch (5/5)
+# Considerations on how to query your data on elasticsearch - example (2/3)
 
-- With the mapping feature, we can let es know how we’d like it to store the
-  information and in turn, how we plan to search for it. On the example above,
-we would have to tell es that we want it to NOT analyse an e-mail field when it
-finds one, so that we can do an exact search on its value. Out of curiosity,
-here is an example:
+- With the mapping feature we can tell es how to store the information and how
+  we plan to search for it. On the example above, we would have to tell es that
+we want it to NOT analyse an e-mail field when it finds one, so that we can do
+an exact search on its value. Out of curiosity, here is an example:
 
 ```
 elasticSearchClient.indices.create({
@@ -221,8 +221,12 @@ elasticSearchClient.indices.create({
   }
 });
 ```
+-------------------------------------------------
+
+# Considerations on how to query your data on elasticsearch - example (3/3)
 
 Then, we could query like below:
+
 ```
 elasticSearchClient.search({
  index: "users",
