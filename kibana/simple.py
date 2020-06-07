@@ -1,21 +1,20 @@
 """
 Uses the Pokemon API to get information on the pokemons on each generation.
 
-Build a dict with one record per generation, with information of which pokemon
-are on each generation.
+Build a list of dicts with one record per generation, with information of which pokemon are on each
+generation. Then, each dict is feed sequentially to the elasticsearch API index method, that
+persists each record one by one.
 """
 
 
 import json
 import logging
-
+from datetime import datetime
 from uuid import uuid4
 
-from datetime import datetime
-
-from elasticsearch import Elasticsearch
 import requests
 
+from elasticsearch import Elasticsearch
 
 logger = logging.getLogger(__name__)
 
@@ -75,11 +74,14 @@ def main():
     records = get_generations_data()
 
     for dict_data in records:
-        res = es.index(index='pokemon_index',
-                    doc_type='pokemon_index_doctype',
-                    id=uuid4(),
-                    body=dict_data)
+        res = es.index(
+            index='pokemon_index',
+            doc_type='pokemon_index_doctype',
+            id=uuid4(),
+            body=dict_data,
+        )
         logger.info(res['result'])
+
 
 if __name__ == '__main__':
     main()
