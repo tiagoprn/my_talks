@@ -1,6 +1,6 @@
-%title: Kibana / Elasticsearch %author: tiagoprn %date: 2020-06-12
-
--> Kibana (and elasticsearch) <- =========
+%title: Kibana / Elasticsearch
+%author: tiagoprn
+%date: 2020-06-12
 
 ## Agenda
 
