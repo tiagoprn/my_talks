@@ -1,14 +1,2 @@
-- Finish the cli to populate from elasticsearch (it is supporting the bigger
-  file `/storage/datasets/kibana-presentation/enem-2016.csv`).
-
 - Demonstrate how to create queries and dashboard/graphics on elasticsearch
   (show the "Discover" panel also, with the "pre-analysis" done by it).
-
-## Add the ideas below on potential uses of elasticsearch:
-
-- Make a dump of a postgres table to CSV and load into the cli
-  developed on example 2.
-
-- Backup  elasticsearch index (doing some specific query,
-  e.g. the last day of data), to a CSV using pandas. It could be easily
-restored that way.
