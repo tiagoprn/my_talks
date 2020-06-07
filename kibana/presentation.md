@@ -251,7 +251,8 @@ elasticSearchClient.search({
 
 # Using python to populate data into elasticsearch
 
-TODO
+[inserting records one by one on es](simple.py)
+[bulk/mass inserting records on es](bulk.py)
 
 -------------------------------------------------
 
