@@ -22,6 +22,7 @@
 - References / Recommended readings
 
 -------------------------------------------------
+
 # Introduction to the ELK stack
 
 - [E]lasticsearch: data persistance, the "database"
@@ -32,6 +33,7 @@ The main value here is given by Elasticsearch. Both other components are
 entirely optional.
 
 -------------------------------------------------
+
 # Elasticsearch - purpose (1/2)
 
 According to the official site:
@@ -43,6 +45,7 @@ checking and autocompletion. All while being fast."
 (due to that, it is used frequently on analytics and machine learning)
 
 -------------------------------------------------
+
 # Elasticsearch - purpose (2/2)
 
 On a single phrase:
@@ -50,15 +53,15 @@ On a single phrase:
 Fast queries and agregations on big datasets.
 
 -------------------------------------------------
-# Elasticsearch - concepts
 
-TODO: add a brief description to each one
+# Elasticsearch - concepts
 
 - NoSQL: a no-relational database
 - Index: It is analogous to a "database" on the relational world.
 - Sharding: Mechanism to distribute your data between nodes.
 
 -------------------------------------------------
+
 # Elasticsearch - features (1/3)
 
 - NoSQL database ("Search-engine store")
@@ -68,6 +71,7 @@ TODO: add a brief description to each one
 - Distributed - through sharding
 
 -------------------------------------------------
+
 # Elasticsearch - features (2/3)
 
 - You can transform your data before indexing it (through Logstash or the
@@ -77,6 +81,7 @@ TODO: add a brief description to each one
   performance
 
 -------------------------------------------------
+
 # Elasticsearch - features (3/3)
 
 - REST API to every operation on the index (inserting and querying data,
@@ -88,6 +93,7 @@ TODO: add a brief description to each one
 - Powerful Web UI through Kibana
 
 -------------------------------------------------
+
 # Elasticsearch - What is sharding and its' benefits?
 
 - sharding = split index data into smaller parts (shards). Each one of those
@@ -100,6 +106,7 @@ TODO: add a brief description to each one
   of the same data on many nodes.
 
 -------------------------------------------------
+
 # Elasticsearch as your primary data store? (1/2)
 
 - Under certaing conditions, yes.
@@ -110,6 +117,7 @@ TODO: add a brief description to each one
   integrity constraints, etc. (classical example: logs)
 
 -------------------------------------------------
+
 # Elasticsearch as your primary data store? (2/2)
 
 - But... you wish to do that, take these into account:
@@ -120,6 +128,7 @@ TODO: add a brief description to each one
   the index that enables that.
 
 -------------------------------------------------
+
 # Recommended way to use elasticsearch (1/2)
 
 - Elasticsearch is commonly used in addition to another database. That way, you
@@ -132,6 +141,7 @@ TODO: add a brief description to each one
 as the WebUI.
 
 -------------------------------------------------
+
 # Recommended way to use elasticsearch (2/2)
 
 "Like with everything else, there's no silver bullet, no one database to rule
@@ -139,6 +149,7 @@ them all. That's likely to always be the case, so know the strengths and
 weaknesses of your stores!"
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch (1/3)
 
 - When you index (save) a document into ElasticSearch, that document is saved
@@ -146,6 +157,7 @@ weaknesses of your stores!"
 save is only made available at the next index refresh.
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch (2/3)
 
 - **An index refresh is an operation that makes the latest changes applied to an
@@ -154,6 +166,7 @@ queries). ElasticSearch **refreshes every index automatically by the value of it
 refresh interval, which is set to 1 second by default**.
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch (3/3)
 
 - **ElasticSearch does not "just" store the data you index, but it also tries to
@@ -166,6 +179,7 @@ reasons on why it makes statistical analysis so fast on big datasets, and
 that is also important to understand why some queries we send to it do not work.
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch - example (1/3)
 
 - Suppose we insert the following text to be stored on es:
@@ -181,6 +195,7 @@ for `john.smith@global-international.com`, it will never return. But you can
 overcome that using es "mapping" feature.
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch - example (2/3)
 
 - With the mapping feature we can tell es how to store the information and how
@@ -208,6 +223,7 @@ elasticSearchClient.indices.create({
 ```
 
 -------------------------------------------------
+
 # Considerations on how to query your data on elasticsearch - example (3/3)
 
 Then, we could query like below:
@@ -232,35 +248,42 @@ elasticSearchClient.search({
 ```
 
 -------------------------------------------------
+
 # Using python to populate data into elasticsearch
 
 TODO
 
 -------------------------------------------------
+
 # Kibana - The elasticsearch Web UI
 
 TODO
 
 -------------------------------------------------
+
 # Exploring data on Kibana - The "Discover"
 
 TODO
 
 -------------------------------------------------
+
 # Exploring data on Kibana - The "Saved Searches"
 
 TODO
 
 -------------------------------------------------
+
 # Exploring data on Kibana - "Dashboards"
 
 TODO
 
 -------------------------------------------------
+
 # QUESTIONS ?
 
 
 -------------------------------------------------
+
 # References / Recommended readings:
 
 - [Recommended Readings](recommended_readings.md)
