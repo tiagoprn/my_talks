@@ -186,7 +186,8 @@ overcome that using es "mapping" feature.
 - With the mapping feature we can tell es how to store the information and how
   we plan to search for it. On the example above, we would have to tell es that
 we want it to NOT analyse an e-mail field when it finds one, so that we can do
-an exact search on its` value. Here is an example:
+an exact search on its` value. On the next slide we can see an example on how
+to do that:
 
 ```
 elasticSearchClient.indices.create({
@@ -205,6 +206,7 @@ elasticSearchClient.indices.create({
   }
 });
 ```
+
 -------------------------------------------------
 # Considerations on how to query your data on elasticsearch - example (3/3)
 
@@ -228,6 +230,7 @@ elasticSearchClient.search({
   }
  })
 ```
+
 -------------------------------------------------
 # Using python to populate data into elasticsearch
 
