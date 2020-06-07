@@ -19,7 +19,12 @@
 
 -------------------------------------------------
 
-# Elasticsearch - purpose
+# Introduction to the ELK stack
+
+TODO
+
+-------------------------------------------------
+# Elasticsearch - purpose (1/2)
 
 According to the official site:
 
@@ -31,7 +36,7 @@ checking and autocompletion. All while being fast."
 
 -------------------------------------------------
 
-# Elasticsearch - purpose
+# Elasticsearch - purpose (2/2)
 
 On a single phrase:
 
@@ -41,13 +46,15 @@ Fast queries and agregations on big datasets.
 
 # Elasticsearch - concepts
 
+TODO: add a brief description to each one
+
 - NoSQL
 - Index
 - Sharding
 
 -------------------------------------------------
 
-# Elasticsearch - features
+# Elasticsearch - features (1/3)
 
 - NoSQL database ("Search-engine store")
 
@@ -57,7 +64,7 @@ Fast queries and agregations on big datasets.
 
 -------------------------------------------------
 
-# Elasticsearch - features
+# Elasticsearch - features (2/3)
 
 - You can transform your data before indexing it (through Logstash or the
   ingest-node pipeline)
@@ -67,7 +74,7 @@ Fast queries and agregations on big datasets.
 
 -------------------------------------------------
 
-# Elasticsearch - features
+# Elasticsearch - features (3/3)
 
 - REST API to every operation on the index (inserting and querying data,
   managing the cluster, etc...)
@@ -79,7 +86,7 @@ Fast queries and agregations on big datasets.
 
 -------------------------------------------------
 
-# Elasticsearch as your primary data store?
+# Elasticsearch as your primary data store? (1/2)
 
 - Under certaing conditions, yes.
 
@@ -90,7 +97,7 @@ Fast queries and agregations on big datasets.
 
 -------------------------------------------------
 
-# Elasticsearch as your primary data store?
+# Elasticsearch as your primary data store? (2/2)
 
 - But... you wish to do that, take these into account:
 
@@ -101,7 +108,7 @@ Fast queries and agregations on big datasets.
 
 -------------------------------------------------
 
-# Recommended way to use elasticsearch
+# Recommended way to use elasticsearch (1/2)
 
 - Elasticsearch is commonly used in addition to another database. That way, you
   can have the best of both worlds.
@@ -114,11 +121,35 @@ as the WebUI.
 
 -------------------------------------------------
 
-# Recommended way to use elasticsearch
+# Recommended way to use elasticsearch (2/2)
 
 "Like with everything else, there's no silver bullet, no one database to rule
 them all. That's likely to always be the case, so know the strengths and
 weaknesses of your stores!"
+
+-------------------------------------------------
+
+# Kibana - The elasticsearch Web UI
+
+TODO
+
+-------------------------------------------------
+
+# Using python to populate data into elasticsearch
+
+TODO
+
+-------------------------------------------------
+
+# Exploring data on Kibana - The "Discover"
+
+TODO
+
+-------------------------------------------------
+
+# Exploring data on Kibana - The "Saved Searches"
+
+TODO
 
 -------------------------------------------------
 
