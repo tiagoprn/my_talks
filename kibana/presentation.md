@@ -8,6 +8,7 @@
 - Elasticsearch - purpose
 - Elasticsearch - concepts
 - Elasticsearch - features
+- Elasticsearch - What is sharding and its' benefits?
 - Elasticsearch as your primary data store?
 - Recommended way to use elasticsearch
 - Kibana - The elasticsearch Web UI
@@ -55,9 +56,9 @@ Fast queries and agregations on big datasets.
 
 TODO: add a brief description to each one
 
-- NoSQL
-- Index
-- Sharding
+- NoSQL: a no-relational database
+- Index: It is analogous to a "database" on the relational world.
+- Sharding: Mechanism to distribute your data between nodes.
 
 -------------------------------------------------
 
@@ -90,6 +91,19 @@ TODO: add a brief description to each one
   backup or extract data, integrating with other tooling.
 
 - Powerful Web UI through Kibana
+
+-------------------------------------------------
+
+# Elasticsearch - What is sharding and its' benefits?
+
+- sharding = split index data into smaller parts (shards). Each one of those
+  parts lives on a different node (machine) - AKA "horizontal scaling".
+
+- Enables higher performance/throughput, since you can distribute and
+  paralelize operations between the shards.
+
+- Also useful to help on failover handling, enabling to have one or more copies
+  of the same data on many nodes.
 
 -------------------------------------------------
 
