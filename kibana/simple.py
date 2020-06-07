@@ -1,3 +1,11 @@
+"""
+Uses the Pokemon API to get information on the pokemons on each generation.
+
+Build a dict with one record per generation, with information of which pokemon
+are on each generation.
+"""
+
+
 import json
 import logging
 
