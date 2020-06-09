@@ -254,12 +254,12 @@ elasticSearchClient.search({
 - Simple insert
 (inserting records one by one on es)
 
-`python simple.py`
+`make populate-simple`
 
 - Bulk insert
 (bulk/mass inserting records on es)
 
-`python bulk.py /storage/datasets/kibana-presentation/videogame-sales.csv`
+`make populate-bulk`
 
 -------------------------------------------------
 
