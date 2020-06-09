@@ -265,7 +265,7 @@ elasticSearchClient.search({
 
 # Kibana - The elasticsearch Web UI
 
-TODO
+![Kibana discover query](images/kibana_discover_query.png)
 
 -------------------------------------------------
 
