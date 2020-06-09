@@ -299,7 +299,7 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 
 # Exploring data on Kibana - The "Saved Searches"
 
-TODO
+(Practical showcase)
 
 -------------------------------------------------
 
