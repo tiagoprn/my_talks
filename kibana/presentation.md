@@ -271,7 +271,29 @@ TODO
 
 # Exploring data on Kibana - The "Discover"
 
-TODO
+## Queries:
+(Important: all operators and commands from kibana query language must be
+UPPERCASE)
+
+Examples:
+
+- Name: "Final Fantasy" AND Genre: Role-Playing
+- mario AND tennis
+- (Name: mario AND tennis) AND (Rank: [10000 TO 99000])
+- Rank: [1 TO 10]
+- Rank: 1
+- Rank:>=10 AND Rank:<=15
+- (Rank:>=800) AND (Rank:<=1000) AND (Name: Mario) AND (NOT Name: Party)
+- Publisher:Nintendo AND Name: Animal
+- Name: ?ario AND (Platform:GB)
+
+**TIP:** If you need to sort your data by a specific field and on asc/desc order, you can
+manipulate the final piece of the URL on kibana. E.g.:
+
+```
+http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
+                                      ^----------- HERE you can manipulate the sorting
+```
 
 -------------------------------------------------
 
