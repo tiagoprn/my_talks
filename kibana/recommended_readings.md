@@ -3,3 +3,8 @@
 - https://medium.com/data-hackers/comparando-elasticsearch-vs-mongodb-4b5932c613d9
 - https://www.elastic.co/blog/found-elasticsearch-as-nosql
 - https://logz.io/blog/elasticsearch-queries/
+- https://dzone.com/articles/observability-vs-monitoring
+- video (kibana visualizations and dashboard): https://www.youtube.com/watch?v=c18bHCK5BKM
+- https://www.elastic.co/guide/en/apm/get-started/current/install-and-run.html
+- https://www.elastic.co/guide/en/apm/get-started/current/agents.html
+- https://www.elastic.co/guide/en/kibana/current/timelion.html

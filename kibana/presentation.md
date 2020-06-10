@@ -4,6 +4,8 @@
 
 ## Agenda
 
+- Observability and Monitoring
+- 3 Pillars of Observability
 - Introduction to the ELK stack
 - Elasticsearch - purpose
 - Elasticsearch - concepts
@@ -17,20 +19,71 @@
 - Kibana - The elasticsearch Web UI
 - Exploring data on Kibana - The "Discover"
 - Exploring data on Kibana - The "Saved Searches"
-- Exploring data on Kibana - "Dashboards"
+- Exploring data on Kibana - "Visualize and Dashboard"
+- Elastic APM
 - Questions
 - References / Recommended readings
 
 -------------------------------------------------
 
-# Introduction to the ELK stack
+# Observability and Monitoring (1/2)
+
+**Observability**: having **data** about a running system.
+
+**Monitoring**: **collecting and displaying** this data.
+
+"If you are observable, I can monitor you."
+
+-------------------------------------------------
+
+# Observability and Monitoring... enable analysis! (2/2)
+
+The ultimate purpose of having observability and monitoring is to perform
+meaninful analysis (either manually of automatically) of a system.
+
+Analysis will:
+
+- help your team diagnose errors, performance bottlenecks, and all
+kinds of anomalies.
+
+- give a better visibility of the general health of a system.
+
+- enable you to have effective data to take more informed decisions
+
+...and help you have more confidence on your job! =D
+
+-------------------------------------------------
+
+# 3 Pillars of Observability
+
+- APM (Application Performance Management)
+- Logs
+- Metrics
+
+The Elastic opensource stack covers not only logs, but also the 2 other. You
+can have visibility through all the 3 pillars directly from Kibana WebUI.
+
+-------------------------------------------------
+
+# Introduction to the ELK stack (1/2)
 
 - [E]lasticsearch: data persistance, the "database"
 - [L]ogstash: aggregates and transforms data before persisting
 - [K]ibana: WebUI to Elasticsearch
 
-The main value here is given by Elasticsearch. Both other components are
-entirely optional.
+Here we will focus on the **E** and **K** from this stack. ;)
+
+-------------------------------------------------
+
+# Introduction to the ELK stack (2/2)
+
+## Other components:
+
+- Timelion: time series data visualizer. Combines totally independent data
+  sources within a single visualization based on timestamps.
+
+- APM: Application Performance Management. Enables collecting data/metrics from
+  an application. It is language/framework centric.
 
 -------------------------------------------------
 
@@ -299,13 +352,42 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 
 # Exploring data on Kibana - The "Saved Searches"
 
+- Saved searches can be used not only to search, but also to make
+  visualizations.
+
+
 (Practical showcase)
 
 -------------------------------------------------
 
-# Exploring data on Kibana - "Dashboards"
+# Exploring data on Kibana - "Visualize and Dashboard"
 
-TODO
+- Visualizations are queries/searches that you can draw diagrams from.
+- A dashboard is a set of visualizations.
+
+
+(Practical showcase)
+
+-------------------------------------------------
+
+# Elastic APM
+
+- The elastic stack also has an opensource APM (Application Performance
+  Management) component.
+
+- An APM allows to
+
+- It consists of a server, and an agent for each language to collect metrics.
+
+- The agent has python support (including django and flask), between other
+  languages like Go.
+
+- According to its web page, it also has Real User Monitoring (RUM), to capture
+  user interactions with clients such as web browsers.
+
+References:
+https://www.elastic.co/guide/en/apm/get-started/current/install-and-run.html
+https://www.elastic.co/guide/en/apm/get-started/current/agents.html
 
 -------------------------------------------------
 
