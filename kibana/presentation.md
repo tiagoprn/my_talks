@@ -372,10 +372,11 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 
 # Elastic APM
 
+- An APM enables monitoring and management of performance and availability of
+  applications/services.
+
 - The elastic stack also has an opensource APM (Application Performance
   Management) component.
-
-- An APM allows to
 
 - It consists of a server, and an agent for each language to collect metrics.
 
