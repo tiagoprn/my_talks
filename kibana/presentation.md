@@ -43,14 +43,14 @@ meaninful analysis (either manually of automatically) of a system.
 
 Analysis will:
 
-- help your team diagnose errors, performance bottlenecks, and all
-kinds of anomalies.
+- help your team **diagnose errors, performance bottlenecks, and all**
+**kinds of anomalies**.
 
-- give a better visibility of the general health of a system.
+- give a better visibility of the general **health of a system**.
 
-- enable you to have effective data to take more informed decisions
+- enable you to have effective **data to take more informed decisions**
 
-...and help you have more confidence on your job! =D
+...and help you have **more confidence on your job**! =D
 
 -------------------------------------------------
 
@@ -79,10 +79,10 @@ Here we will focus on the **E** and **K** from this stack. ;)
 
 ## Other components:
 
-- Timelion: time series data visualizer. Combines totally independent data
+- **Timelion: time series data visualizer**. Combines totally independent data
   sources within a single visualization based on timestamps.
 
-- APM: Application Performance Management. Enables collecting data/metrics from
+- **APM: Application Performance Management**. Enables collecting data/metrics from
   an application. It is language/framework centric.
 
 -------------------------------------------------
@@ -127,42 +127,41 @@ Fast queries and agregations on big datasets.
 
 # Elasticsearch - features (2/3)
 
-- You can transform your data before indexing it (through Logstash or the
+- You can **transform your data before indexing** it (through Logstash or the
   ingest-node pipeline)
 
-- You can (and should) map your index with the fields and its types for maximum
-  performance
+- You can (and should) **map your index** with the fields and its types **for maximum performance**
 
 -------------------------------------------------
 
 # Elasticsearch - features (3/3)
 
-- REST API to every operation on the index (inserting and querying data,
+- **REST API to every operation** on the index (inserting and querying data,
   managing the cluster, etc...)
 
-- Using JSON to insert data and query it into the database, you can easily
-  backup or extract data, integrating with other tooling.
+- **Using JSON to insert data** and query it into the database, you can easily
+  backup or extract data, **integrating with other tooling**.
 
-- Powerful Web UI through Kibana
+- Powerful Web UI through **Kibana**
 
 -------------------------------------------------
 
 # Elasticsearch - What is sharding and its' benefits?
 
-- sharding = split index data into smaller parts (shards). Each one of those
+- **sharding** = **split index data into smaller parts** (shards). Each one of those
   parts lives on a different node (machine) - AKA "horizontal scaling".
 
-- Enables higher performance/throughput, since you can distribute and
-  paralelize operations between the shards.
+- Enables higher performance/throughput, since you can **distribute and paralelize operations**
+between the shards.
 
-- Also useful to help on failover handling, enabling to have one or more copies
-  of the same data on many nodes.
+- Also useful to help on failover handling, enabling to have one or
+more **copies of the same data** on many nodes.
 
 -------------------------------------------------
 
 # Elasticsearch as your primary data store? (1/2)
 
-- Under certaing conditions, yes.
+- Under certain conditions, yes.
 
 ## Conditions:
 
@@ -173,50 +172,48 @@ Fast queries and agregations on big datasets.
 
 # Elasticsearch as your primary data store? (2/2)
 
-- But... you wish to do that, take these into account:
+- But... **if you wish** to do that, take these into account:
 
-* You have backups of the data
+* You have **backups** of the data
 
-* After indexed queries will be blazing fast, but it takes some time to build
-  the index that enables that.
+* After indexed queries will be blazing fast, but
+**it takes some time to build the index** that enables that.
 
 -------------------------------------------------
 
 # Recommended way to use elasticsearch (1/2)
 
-- Elasticsearch is commonly used in addition to another database. That way, you
+- Elasticsearch is commonly used in **addition to another database**. That way, you
   can have the best of both worlds.
 
 - The other database can impose constraints, transactions, etc...
 
-- ...and you can feed these data to elasticsearch for fast searchs on high
-  volumes, gaining for free the ability to do exploration analysis using Kibana
-as the WebUI.
+- ...and you can feed these data to **elasticsearch for fast searchs on high volumes**,
+gaining for free the ability to do **exploration analysis using Kibana** as the WebUI.
 
 -------------------------------------------------
 
 # Recommended way to use elasticsearch (2/2)
 
 "Like with everything else, there's no silver bullet, no one database to rule
-them all. That's likely to always be the case, so know the strengths and
-weaknesses of your stores!"
+them all. That's likely to always be the case, so
+**know the strengths and weaknesses of your stores**!"
 
 -------------------------------------------------
 
 # Considerations on how to query your data on elasticsearch (1/3)
 
 - When you index (save) a document into ElasticSearch, that document is saved
-  multiple times — on a shard and its replica(s). However, the information you
-save is only made available at the next index refresh.
+  multiple times — on a shard and its replica(s). However,
+**the information you save is only made available at the next index refresh**.
 
 -------------------------------------------------
-
 # Considerations on how to query your data on elasticsearch (2/3)
 
-- **An index refresh is an operation that makes the latest changes applied to an**
-**index available for search** (meaning they’ll reflect in results for search
-queries). ElasticSearch **refreshes every index automatically by the value of its**
-**refresh interval, which is set to 1 second by default**.
+- An **index refresh** is an operation that **applies the latest changes to an index**
+available for search (meaning they’ll reflect in results for search
+queries). ElasticSearch **refreshes every index automatically** by the value of its
+refresh interval, which is set to 1 second by default.
 
 -------------------------------------------------
 
@@ -251,8 +248,8 @@ overcome that using es "mapping" feature.
 
 # Considerations on how to query your data on elasticsearch - example (2/3)
 
-- With the mapping feature we can tell es how to store the information and how
-  we plan to search for it. On the example above, we would have to tell es that
+- With the **mapping feature we can tell es how to store the information and how
+  we plan to search for it**. On the example above, we would have to tell es that
 we want it to NOT analyse an e-mail field when it finds one, so that we can do
 an exact search on its` value. On the next slide we can see an example on how
 to do that:
@@ -363,6 +360,7 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 # Exploring data on Kibana - "Visualize and Dashboard"
 
 - Visualizations are queries/searches that you can draw diagrams from.
+
 - A dashboard is a set of visualizations.
 
 
@@ -372,18 +370,17 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 
 # Elastic APM
 
-- An APM enables monitoring and management of performance and availability of
+- APM ([A]pplication [P]erformance [M]anagement)
+
+- An APM enables **monitoring and management of performance and availability** of
   applications/services.
 
-- The elastic stack also has an opensource APM (Application Performance
-  Management) component.
-
-- It consists of a server, and an agent for each language to collect metrics.
+- It consists of a **server**, and an **agent for each language** to collect metrics.
 
 - The agent has python support (including django and flask), between other
   languages like Go.
 
-- According to its web page, it also has Real User Monitoring (RUM), to capture
+- According to its web page, it also has **Real User Monitoring (RUM)**, to capture
   user interactions with clients such as web browsers.
 
 References:
