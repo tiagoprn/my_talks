@@ -35,8 +35,8 @@ make docker-compose-dft-up
 3) Run the scripts to populate data:
 
 ```
-make populate-simple`
-make populate-bulk`
+make populate-simple
+make populate-bulk
 ```
 
 
