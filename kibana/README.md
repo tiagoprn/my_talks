@@ -19,11 +19,28 @@ start a virtualenv to run the scripts.
 has the "Machine Learning" functionality you can use to explore data.
 
 - To summon a sandbox for your testing, you must:
+
 1) Create a python virtualenv with the requirements file
+
 2) Raise the elasticsearch/kibana containers:
-    `make docker-compose-current-up` or `make docker-compose-dft-up`
+
+
+```
+make docker-compose-current-up
+# or
+make docker-compose-dft-up
+```
+
 3) Run the scripts to populate data:
-    `make populate-simple`
-    `make populate-bulk`
+
+```
+make populate-simple`
+make populate-bulk`
+```
+
+
 4) Then, to open the kibana dashboard on your browser:
-    `make kibana-dashboard`
+
+```
+make kibana-dashboard
+```
