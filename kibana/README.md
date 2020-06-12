@@ -1,3 +1,4 @@
+# Elasticsearch/Kibana
 
 - The presentation "slides" are on `presentation.md`. It is a simple markdown
   text file.
