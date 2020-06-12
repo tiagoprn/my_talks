@@ -301,21 +301,26 @@ elasticSearchClient.search({
 
 # Using python to populate data into elasticsearch
 
-- Simple insert
-(inserting records one by one on es)
+- Simple insert (simple.py)
+Inserting records one by one on es
 
-`make populate-simple`
+- Bulk insert (bulk.py)
+Bulk/mass inserting records on es
 
-- Bulk insert
-(bulk/mass inserting records on es)
-
-`make populate-bulk`
+NEXT STEP: let's play on Kibana!
 
 -------------------------------------------------
 
 # Kibana - The elasticsearch Web UI
 
-![Kibana discover query](images/kibana_discover_query.png)
+Time to some practice. Here we:
+
+- raise the **containers** (makefile)
+
+- run **python** scripts to simple and bulk populate es (makefile)
+
+- go to kibana, enable boths indexes there and start playing.
+Start with the version used in Dafiti.
 
 -------------------------------------------------
 
@@ -365,6 +370,10 @@ http://localhost:5601/app/kibana#/...,sort:!(Global_Sales,desc))
 
 
 (Practical showcase)
+
+
+After finished, show the current kibana version and its Machine Learning
+funcionality.
 
 -------------------------------------------------
 
