@@ -5,6 +5,11 @@ json file.
 
 Then, we use a python iterator to read the lines from the file and feed them to
 the elasticsearch bulk insert API.
+
+
+If you are running with the Makefile, you must download the kaggle videogame
+sales dataset csv file at https://www.kaggle.com/gregorut/videogamesales/download
+and change CSV_PATH on the Makefile to the full path where you have downloaded it.
 """
 
 import json

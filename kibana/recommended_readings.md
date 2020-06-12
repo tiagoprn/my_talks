@@ -8,3 +8,5 @@
 - https://www.elastic.co/guide/en/apm/get-started/current/install-and-run.html
 - https://www.elastic.co/guide/en/apm/get-started/current/agents.html
 - https://www.elastic.co/guide/en/kibana/current/timelion.html
+- https://www.elastic.co/guide/en/elasticsearch/reference/7.6/query-dsl-query-string-query.html
+- The kaggle videogame sales dataset: https://www.kaggle.com/gregorut/videogamesales/download
